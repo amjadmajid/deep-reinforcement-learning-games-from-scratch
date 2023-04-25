@@ -14,11 +14,11 @@ GAMMA = 0.99
 TAU = 0.005
 LR = 1e-3
 
-num_episodes = 20
+num_episodes = 40
 rewards = [0]
-fig = plt.figure()
-
+episode_reward = 0
 memory = Memory(10_000)
+plt.figure(1)
 
 env = GridWorld(shape = (5,5), 
                 agent_pos=(0,0),
@@ -40,7 +40,6 @@ def optimize_model():
   non_final_mask = torch.tensor(tuple(map(lambda s: s is not None, batch.next_state)))
   non_final_next_states = torch.cat([s for s in batch.next_state if s is not None])
   state_batch = torch.cat(batch.state)
-  print('[action batch]', batch.action)
   action_batch = torch.cat(batch.action)
   reward_batch = torch.cat(batch.reward)
 
@@ -65,7 +64,8 @@ for i_episode in range(num_episodes):
     env.render()
     action = action_selector.select_action(state)
     observation, reward, done, _ = env.step(action.item())
-    rewards.append(rewards[-1] + reward)
+    episode_reward += reward
+
     reward = torch.tensor([reward])
 
     next_state = torch.tensor(observation, dtype=torch.float32).unsqueeze(0) if not done else None
@@ -81,11 +81,14 @@ for i_episode in range(num_episodes):
     target_net.load_state_dict(target_net_state_dict)
 
     print(f"Progress: {i_episode+1}/{num_episodes}")
-    if i_episode % 5 == 0:
-        plot(rewards)
-        time.sleep(.01)
+        
     if done:
+        rewards.append(episode_reward)
+        episode_reward = 0
+        plot(rewards)
         print("DONE!")
         torch.save(policy_net, "policy_net")
         env.render()
         break
+
+plt.savefig("training_results.pdf")

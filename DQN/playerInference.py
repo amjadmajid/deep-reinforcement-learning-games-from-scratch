@@ -8,9 +8,8 @@ if __name__ == '__main__':
     dqn.eval()
     # for param in dqn.parameters():
     #     print(param)
-    env = GridWorld(shape = np.array((5,5)), obstacles = \
-                    np.array([[0,1], [1,1], [2,1],[3,1],[1,3],[2,3],[3,3],[4,3] ]))
-    n_actions = env.action.n
+    env = GridWorld(shape = (5,5), obstacles = \
+                    [(0,1), (1,1), (2,1), (3,1),(2,3),(3,3),(4,3) ])
     state, info = env.reset()
 
     for i in range(100):
