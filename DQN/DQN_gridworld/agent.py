@@ -6,18 +6,14 @@ import torch.nn as nn
 import torch.nn.functional as F
 from collections import deque, namedtuple
 
-EPS_START = 0.9
-EPS_END = 0.05
-EPS_DECAY = 20_000
-
 Transition = namedtuple('Transition', ('state', 'action', 'next_state', 'reward'))
 
 class DQN(nn.Module):
-  def __init__(self, n_observations, n_actions): 
+  def __init__(self, n_observations, n_actions, hidden_nn_size=128): 
     super(DQN, self).__init__()
-    self.layer1 = nn.Linear(n_observations, 128)
-    self.layer2 = nn.Linear(128,128)
-    self.layer3 = nn.Linear(128, n_actions)
+    self.layer1 = nn.Linear(n_observations, hidden_nn_size)
+    self.layer2 = nn.Linear(hidden_nn_size,hidden_nn_size)
+    self.layer3 = nn.Linear(hidden_nn_size, n_actions)
 
   def forward(self, x):
     x = F.relu(self.layer1(x))
@@ -38,17 +34,18 @@ class Memory(object):
     return len(self.memory)
 
 class Action(): 
-    def __init__(self, action_space_len, nn):
+    def __init__(self, action_space_len, nn, eps_start = 0.9, eps_end = 0.05, eps_decay=5000):
         self.n = action_space_len
         self.steps_done = 0
         self.nn = nn
+        self.eps_start = eps_start
+        self.eps_end = eps_end
+        self.eps_decay = eps_decay
     
-    def sample_action_space(self):
-      return random.randint(0, self.n-1)
-
-    def select_action(self, state):
+    def select(self, state):
         sample = random.random()
-        eps_threshold = EPS_END + (EPS_START - EPS_END) * math.exp(-1. * self.steps_done / EPS_DECAY)
+        eps_threshold = self.eps_end + (self.eps_start - self.eps_end) * \
+          math.exp(-1. * self.steps_done / self.eps_decay)
         self.steps_done += 1
         if sample > eps_threshold:
             with torch.no_grad():
@@ -56,7 +53,7 @@ class Action():
                 print('[NN action]', a )
                 return a
         else:
-            a = torch.tensor( [[self.sample_action_space()]] )
+            a = torch.tensor( [[random.randint(0, self.n-1)]] )
             print('[Random Action]', a)
             return a
         

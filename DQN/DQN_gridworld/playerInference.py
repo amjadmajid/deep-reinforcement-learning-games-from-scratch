@@ -9,8 +9,9 @@ if __name__ == '__main__':
     # for param in dqn.parameters():
     #     print(param)
     env = GridWorld(shape = (5,5), obstacles = \
-                    [(0,1), (1,1), (2,1), (3,1),(2,3),(3,3),(4,3) ])
+                    [(0,1), (1,1), (2,1), (3,1), (0,3),(2,3),(3,3),(1,3) ])
     state, info = env.reset()
+    done = False
 
     for i in range(100):
         state = torch.tensor(state, dtype=torch.float32).unsqueeze(0)
@@ -18,9 +19,12 @@ if __name__ == '__main__':
         print(action)
         next_state, reward, done, _  = env.step(action.item())
         env.render()
+        time.sleep(.2)
         if done:
+            time.sleep(.5)
             print("DONE!")
             break
         state = next_state
-        time.sleep(.5)
+    if not done: 
+        print("Failed")
 
