@@ -4,12 +4,12 @@ import time
 import torch
 
 if __name__ == '__main__':
-    dqn = torch.load("policy_net")
+    dqn = torch.load("policy_net.model")
     dqn.eval()
     # for param in dqn.parameters():
     #     print(param)
     env = GridWorld(shape = (5,5), obstacles = \
-                    [(0,1), (1,1), (2,1), (3,1), (0,3),(2,3),(3,3),(1,3) ])
+                    [(0,1), (1,1), (2,1), (3,1), (2,3),(1,3),(3,3),(4,3) ])
     state, info = env.reset()
     done = False
 

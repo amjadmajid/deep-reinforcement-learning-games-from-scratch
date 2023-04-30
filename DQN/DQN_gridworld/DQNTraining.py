@@ -52,7 +52,6 @@ def optimize_model():
   with torch.no_grad():
     next_state_values[non_final_mask] = target_net(non_final_next_states).max(1)[0]
   expected_state_action_values = ((next_state_values * GAMMA) + reward_batch).unsqueeze(1)
-  
   # print(state_action_values.shape)
   # print(expected_state_action_values.shape)
   # exit()
@@ -79,7 +78,8 @@ for i_episode in range(num_episodes):
       next_state = None
     else:
       next_state = torch.tensor(observation, dtype=torch.float32).unsqueeze(0)
-
+    # print( state, action, next_state, reward)
+    # exit()
     memory.push(state, action, next_state, reward)
     state = next_state
     optimize_model()

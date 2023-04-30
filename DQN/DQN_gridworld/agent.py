@@ -1,4 +1,3 @@
-import numpy as np
 import random 
 import math
 import torch
@@ -34,7 +33,8 @@ class Memory(object):
     return len(self.memory)
 
 class Action(): 
-    def __init__(self, action_space_len, nn, eps_start = 0.9, eps_end = 0.05, eps_decay=5000):
+    def __init__(self, action_space_len, nn, \
+                 eps_start = 0.9, eps_end = 0.05, eps_decay=5000):
         self.n = action_space_len
         self.steps_done = 0
         self.nn = nn
