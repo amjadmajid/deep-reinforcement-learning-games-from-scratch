@@ -7,6 +7,6 @@ This repository contains games that have been developed from scratch with the go
 
 ## Games 
 1. Move in a [grid world](https://github.com/amjadmajid/DRL/tree/main/ValueIteration) to a destination. Solved by the Value Iteration algorithm 
-2. Move in a [grid world](https://github.com/amjadmajid/DRL/tree/main/ValueIteration) to a destination. Solved by a DQN agent with feed foreword neural network layers.
+2. Move in a [grid world](https://github.com/amjadmajid/DRL/tree/main/DQN/DQN_gridworld) to a destination. Solved by a DQN agent with feed foreword neural network layers.
 3. [Snake](https://github.com/amjadmajid/DRL/tree/main/Snake) game solved by a DQN with feed foreword neural network layers.
 4.  [SnakeCNN](https://github.com/amjadmajid/DRL/tree/main/SnakeCNN) game solved by a DQN with Convolution neural network layers.
