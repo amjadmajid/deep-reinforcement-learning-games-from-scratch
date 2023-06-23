@@ -106,7 +106,7 @@ for i_episode in range(num_episodes):
       next_state = torch.tensor(observation, dtype=torch.float32).unsqueeze(0)
     print( state, action, next_state, reward)
     if reward == 10 :
-      time.sleep(2)
+      time.sleep(.2)
     memory.push(state, action, next_state, reward)
     state = next_state
     optimize_model()
