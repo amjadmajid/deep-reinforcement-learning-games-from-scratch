@@ -22,7 +22,7 @@ cell_size = 16
 num_episodes = 5_000
 rewards = []
 memory = Memory(10_0000)
-plt.figure(1)
+# plt.figure(1)
 
 class FrameStacker():
     def __init__(self, stack_size):
@@ -48,7 +48,8 @@ frame_stacker = FrameStacker(stack_size=FRAME_STACK_SIZE)
 
 grid = Grid(grid_size=grid_size, cell_size=cell_size)
 snake = Snake(grid)
-window = Window(grid, snake)
+
+# window = Window(grid, snake)
 action_space_size =  3 #len(snake.direction.directions) - 1  # Do not allow 180 degree move
 
 policy_net = DQN((FRAME_STACK_SIZE, *grid.grid.shape), action_space_size)  # Change input channels to 4 because of frame stacking
@@ -119,6 +120,7 @@ def update_target_net():
 
 for i_episode in range(num_episodes):
     print("STARTING EPISODE: ", i_episode)
+    snake_length = len(snake.snake)
     
     ## Reset behavior
     frame_stacker.clear()
@@ -128,8 +130,17 @@ for i_episode in range(num_episodes):
     # print('[TRAIN: tensor state]',state.shape)
     frame_stacker.push(state)
     episode_reward = 0
-
+    steps_conter = 0
     while playing:
+        steps_conter += 1
+        if steps_conter % 2000 == 0:
+            if len(snake.snake) > snake_length:
+                snake_length = len(snake.snake)
+                print('[SNAKE ATE EXTENDS EPISODE]')
+                steps_conter = 0
+            else:
+                print('NO PROGRESS END EPISODE')
+                break
         
         #print('[STATE.shape]', state.shape)  
         state_stack = frame_stacker.get_stacked_frames()
@@ -139,7 +150,7 @@ for i_episode in range(num_episodes):
         # print('[ACTION]', action)
         stacked_reward = 0
         for _ in range(FRAME_STACK_SIZE):
-            window.update()
+            # window.update()
             observation, reward, done, _ = snake.step(action)
             stacked_reward += reward
             # print('[REWARD]', reward)
@@ -167,7 +178,7 @@ for i_episode in range(num_episodes):
             plot(rewards)
             print("DONE!")
             torch.save(policy_net, "policy_net.model")
-            window.update()
+            # window.update()
             break
 
 

@@ -62,7 +62,7 @@ class Snake:
         x = self.head.x
         y = self.head.y 
         # Check if the snake is out of bounds
-        print("[Oach] x:", x, "y:", y, "max_x:", max_x, "max_y:", max_y)
+        # print("[Oach] x:", x, "y:", y, "max_x:", max_x, "max_y:", max_y)
         if x > max_x or y > max_y or x < 0 or y < 0 :
             self.reward += REWARD_DIE
             died = True
@@ -77,7 +77,7 @@ class Snake:
         Check if the snake has bitten itself.
         """
         if head in self.snake[1:]:
-            print("[Oach] bitten itself")
+            # print("[Oach] bitten itself")
             return True
         return False
     
