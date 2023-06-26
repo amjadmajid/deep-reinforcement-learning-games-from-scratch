@@ -70,7 +70,7 @@ class ValueIteration():
 
 
 if __name__ == "__main__":
-    env = GridWorld(shape = (5,5), obstacles = [(0,1), (1,1), (2,1), (3,1),\
+    env = GridWorld(shape = (5,5), obstacles = [(0,1), (1,1), (2,1), (4,1),\
                     (0,3),(2,3),(3,3), (4,3) ])
     
     state = env.reset()
@@ -78,9 +78,10 @@ if __name__ == "__main__":
     agent.value_iteration()
     steps =0
 
+    # Interact with the environment based on the policy derived from value iteration
     while True: 
         steps += 1
-        clear()
+        clear_screen()
         action = agent.choose_action(state)
         state, _, done, _ = env.step(action)
         env.render()
