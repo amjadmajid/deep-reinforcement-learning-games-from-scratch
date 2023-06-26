@@ -16,5 +16,5 @@ The code can be explained as follows:
 
 6. The `render` method prints the current state of the grid world.
 
-7. The utils.py provides a function for poltting the state value function.
+7. The `utils.py` provides a function for poltting the state value function.
 

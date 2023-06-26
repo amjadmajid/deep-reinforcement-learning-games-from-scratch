@@ -1,8 +1,16 @@
 import numpy as np
 import time 
+import sys
+import os
 
-from utils import * 
-from gridWorld import GridWorld
+sys.path.append( # add parent directory to the python path so you can import from sub directories
+    os.path.dirname( # get the name of the parent directory
+    os.path.dirname( # get the name of current directory
+    os.path.abspath(__file__) # absolute path of this file
+    )))
+
+from Games.utils import * 
+from Games.gridWorld import GridWorld
 
 class ValueIteration():
     def __init__(self, env, theta=1e-6, gamma=.99):
