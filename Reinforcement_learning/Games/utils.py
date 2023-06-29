@@ -24,7 +24,9 @@ def plot_q_table(q_table):
     for row in q_table:
         for cell in row:
             q_values = np.round(cell, 2)
-            print(q_values, end="\t")
+            for q_value in q_values:
+                print(f"{q_value:6.2f}", end=" ")
+            print("", end="\t")
         print()
 
 def clear_screen():
