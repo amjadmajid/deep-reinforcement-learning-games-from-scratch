@@ -15,7 +15,7 @@ Unlike Q-learning, which is an off-policy learner, SARSA is an on-policy learner
 
 Now, let's illustrate the SARSA algorithm with a simple gridworld example. In a gridworld, an agent can move in four directions (Up, Down, Left, Right), with the aim to reach a goal state from a starting state.
 
-![Grid World](https://www.researchgate.net/profile/Alexey-Melnikov-3/publication/262526038/figure/fig2/AS:296823253159943@1447779586992/The-grid-world-task-The-goal-of-the-game-is-to-find-the-star-At-the-beginning-of-each.png)
+![Grid World](../Games/images/gridworld.png)
 
 (Source: Medium)
 
