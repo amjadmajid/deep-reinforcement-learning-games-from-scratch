@@ -17,8 +17,6 @@ Now, let's illustrate the SARSA algorithm with a simple gridworld example. In a 
 
 ![Grid World](../Games/images/gridworld.png)
 
-(Source: Medium)
-
 Here is a step-by-step explanation of the SARSA algorithm with the gridworld:
 
 1. Initialize Q-table with zeros. The Q-table will have dimensions of (Number of States x Number of Actions), so in this case, it would be (25 states x 4 actions) for a 5x5 gridworld.
