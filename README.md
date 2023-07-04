@@ -1,5 +1,5 @@
 # Deep Reinforcement Learning: Building Games from Scratch
----
+
 **Author:** Amjad Yousef Majid <br>
 **Contact:** amjad.y.majid@gmail.com
 
