@@ -120,7 +120,7 @@ for i_episode in range(num_episodes):
 
         plot(rewards)
         print("DONE!")
-        torch.save(policy_net, "policy_net.model")
+        torch.save(policy_net, "DQN.model")
         window.update()
         break
     
