@@ -3,6 +3,8 @@
 **Author:** Amjad Yousef Majid <br>
 **Contact:** amjad.y.majid@gmail.com
 
+<img style="display:block; margin-left:auto; margin-right:auto" src="images/AI_games.gif"> <br />
+
 This repository houses a collection of games that are created from the ground up to train Deep Reinforcement Learning (DRL) agents. These games, programmed in Python and Pygame, provide an enriching environment for DRL agents to learn and develop. The DRL agents themselves are built utilizing Pytorch. 
 
 **To highlight the standalone nature of this project, no Gym or Gymnasium libraries have been employed.**
