@@ -1,8 +1,15 @@
 # Import necessary libraries
 import numpy as np
 import time
+import sys
+import os
+
+sys.path.append( # add parent directory to the python path so you can import from sub directories
+    os.path.dirname( # get the name of the parent directory
+    os.path.abspath(__file__) # absolute path of this file
+    ))
 import matplotlib.pyplot as plt
-from utilities import *
+from utils.utilities import *
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -116,9 +123,9 @@ for i_episode in range(num_episodes):
         episode_reward = 0
         plot(rewards)  # Plot the rewards
         print("DONE!")
-        torch.save(policy_net, "DQN_Gridworld.model")  # Save the trained model
+        torch.save(policy_net, "results/DQN.model")  # Save the trained model
         env.render()  # Render the final state of the environment
         break
 
 # Save the training results
-plt.savefig("training_results.pdf")
+plt.savefig("results/training_results.pdf")
