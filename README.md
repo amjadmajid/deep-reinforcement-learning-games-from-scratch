@@ -7,7 +7,7 @@
 
 This repository houses a collection of games that are created from the ground up to train Deep Reinforcement Learning (DRL) agents. These games, programmed in Python and Pygame, provide an enriching environment for DRL agents to learn and develop. The DRL agents themselves are built utilizing Pytorch. 
 
-**To highlight the standalone nature of this project, no Gym or Gymnasium libraries have been employed.**
+To highlight the standalone nature of this project, **no Gym or Gymnasium libraries have been employed.**
 
 ## Classic Reinforcement Learning Scenarios
 Explore the world of traditional reinforcement learning through various scenarios. The objective in each case is to navigate a grid world to reach a specified destination using different algorithms:
