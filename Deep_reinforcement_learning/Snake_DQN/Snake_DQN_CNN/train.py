@@ -6,11 +6,22 @@ from agent import Transition, DQN, Action, Memory
 from snake import Snake
 from env import Grid, Window
 from copy import deepcopy
-from utilities import plot
+import sys
+import os
+
+sys.path.append( # add parent directory to the python path so you can import from sub directories
+    os.path.dirname( # get the name of the parent directory
+    os.path.dirname( # get the name of the parent directory
+    os.path.abspath(__file__) # absolute path of this file
+    )))
+from utils.utilities import plot
 import pygame
 import time
 import numpy as np
 from collections import deque
+
+MODEL = 'DQN'
+# MODEL = 'DDQN'
 
 BATCH_SIZE = 16
 GAMMA = 0.97
@@ -60,7 +71,7 @@ optimizer = optim.AdamW(policy_net.parameters(), lr=LR, amsgrad=True)
 
 
 
-def optimize_model():
+def optimize_model(Model=MODEL):
     if len(memory) < BATCH_SIZE * 2:
         return
     # print('[TRAINING: OPTIMIZE MODEL]')
@@ -85,7 +96,12 @@ def optimize_model():
     # exit()
     next_state_values = torch.zeros(BATCH_SIZE)
     with torch.no_grad():
-        next_state_values = target_net(next_state_stack).max(1)[0]
+        if Model == 'DQN':
+            next_state_values = target_net(next_state_stack).max(1)[0]
+        elif Model == 'DDQN':
+            max_Q_action = policy_net(next_state_stack).max(1)[1].unsqueeze(1)
+            # print('[MAX Q ACTION]', max_Q_action.shape, max_Q_action)
+            next_state_values = target_net(next_state_stack).gather(1, max_Q_action)
         next_state_values[done_batch] = 0.0
     expected_state_action_values = ((next_state_values * GAMMA) + reward_batch).unsqueeze(1)
 
@@ -166,7 +182,7 @@ for i_episode in range(num_episodes):
         memory.push(state_stack, action, next_state_stack, stacked_reward, done)
         state = observation
         frame_stacker.push(state)
-        optimize_model()
+        optimize_model(model=MODEL)
         if i_episode % 1000 == 0:
             hard_update_target_net()
         #update_target_net()
@@ -177,10 +193,10 @@ for i_episode in range(num_episodes):
             rewards.append(episode_reward)
             plot(rewards)
             print("DONE!")
-            torch.save(policy_net, "DQN.model")
+            torch.save(policy_net, "results/DQN.model")
             # window.update()
             break
 
 
-plt.savefig("training_results.pdf")
+plt.savefig("results/training_results.pdf")
 plt.show()
