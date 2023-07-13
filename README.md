@@ -20,7 +20,7 @@ Explore the world of traditional reinforcement learning through various scenario
 Delve deeper into more complex scenarios where DRL agents tackle challenging tasks, from navigating mazes to mastering the game of Snake:
 
 1. Navigating a [grid world using DQN](https://github.com/amjadmajid/deep-reinforcement-learning-games-from-scratch/tree/main/02_Deep_reinforcement_learning/Gridworld_DQN)
-2. Navigate a Maze using [Policy Gradient REINFORCE algorithm](https://github.com/amjadmajid/deep-reinforcement-learning-games-from-scratch/tree/main/02_Deep_reinforcement_learning/REINFORCE)
+2. Navigate a Maze using [Policy Gradient REINFORCE algorithm](https://github.com/amjadmajid/deep-reinforcement-learning-games-from-scratch/tree/main/02_Deep_reinforcement_learning/Gridworld_REINFORCE)
 3. Playing [Snake using DQN with a linear neural network (FNN)](https://github.com/amjadmajid/deep-reinforcement-learning-games-from-scratch/tree/main/02_Deep_reinforcement_learning/Snake_DQN/01_Snake_DQN_FNN)
 4. Playing Snake with [DQN (or DDQN) with convolution neural networks (CNNs)](https://github.com/amjadmajid/deep-reinforcement-learning-games-from-scratch/tree/main/02_Deep_reinforcement_learning/Snake_DQN/02_Snake_DQN_CNN)
 
