@@ -6,8 +6,9 @@ import os
 
 sys.path.append( # add parent directory to the python path so you can import from sub directories
     os.path.dirname( # get the name of the parent directory
+    os.path.dirname( # get the name of the parent directory
     os.path.abspath(__file__) # absolute path of this file
-    ))
+    )))
 import matplotlib.pyplot as plt
 from utils.utilities import *
 import torch
