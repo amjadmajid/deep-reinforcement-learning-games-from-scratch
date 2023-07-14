@@ -3,7 +3,7 @@ Policy gradient methods are a class of reinforcement learning algorithms that ai
 
 To understand policy gradient methods, let's break down the key components and steps involved:
 
-1. Markov Decision Process (MDP): Policy gradient methods operate within the framework of an MDP, which consists of a tuple \( (S, A, P, R, \gamma) \). Here, \( S \) represents the state space, \( A \) represents the action space, \( P(s'|s, a) \) is the transition probability function defining the probability of transitioning to state \( s' \) given state \( s \) and action \( a \), \( R(s, a) \) is the immediate reward obtained from taking action \( a \) in state \( s \), and \( \gamma \) is the discount factor determining the importance of future rewards.
+1. Markov Decision Process (MDP): Policy gradient methods operate within the framework of an MDP, which consists of a tuple $ (S, A, P, R, \gamma) $. Here, $ S $ represents the state space, $ A $ represents the action space, $ P(s'|s, a) $ is the transition probability function defining the probability of transitioning to state $ s' $ given state $ s $ and action $ a $, $ R(s, a) $ is the immediate reward obtained from taking action $ a $ in state $ s $, and $ \gamma $ is the discount factor determining the importance of future rewards.
 
 2. Policy Function: A policy is a mapping from states to probability distributions over actions. It defines the agent's behavior in the environment. In policy gradient methods, the policy is often represented by a parametric function, such as a neural network, with parameters \( \theta \).
 
