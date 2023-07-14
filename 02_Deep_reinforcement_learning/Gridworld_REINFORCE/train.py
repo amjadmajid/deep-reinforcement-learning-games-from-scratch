@@ -60,7 +60,16 @@ def optimize(transitions):
 
     # print(f'states: {states}')
     probs = policy(states)
-    log_probs = - Categorical(probs).log_prob(actions) # convert the logits to log probabilities; negative sign to do gradient ascent
+    
+    ## convert the logits to log probabilities; negative sign to do gradient ascent:
+    #Categorical(probs) creates a categorical distribution object based on the given 
+    # probability values probs. This object represents a discrete probability distribution 
+    # where each action has a corresponding probability.log_prob(actions) calculates the 
+    # natural logarithm of the probability of each action in the actions set, according to 
+    # the categorical distribution. This operation returns a tensor or an array of logarithmic 
+    # probabilities. The negative sign - negates each logarithmic probability in the tensor or 
+    # array, resulting in negative log probabilities. 
+    log_probs = - Categorical(probs).log_prob(actions) 
     loss = torch.sum(log_probs * rewards_to_go) # loss is the sum of the log probabilities times the rewards_to_go
     optimizer.zero_grad()
     loss.backward()
@@ -90,7 +99,9 @@ for episode in range(EPISODES):
         # get action probabilities from the policy network
         action_probs = policy(state_tensor)
         # sample action from the action_probs distribution
+        # action is the index of the action in the action space 
         action = Categorical(action_probs).sample().item()
+   
         # t = env.step(action) ->  (array([ 0.04733234,  0.17882274,  0.04574946, -0.29644156], dtype=float32), 1.0, False, False, {})
         next_state, reward, done, _, = env.step(action)
         transitions.states.append(state)
