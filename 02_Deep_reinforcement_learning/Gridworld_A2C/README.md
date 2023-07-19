@@ -1,4 +1,4 @@
-Certainly! Here's the previous answer presented using LaTeX syntax with inline equations enclosed in `$...$` and display equations enclosed in `$$...$$`:
+# Aysnchronous Advantage Actor-Critic (A2C) Algorithm
 
 **Overview of A2C:**
 
