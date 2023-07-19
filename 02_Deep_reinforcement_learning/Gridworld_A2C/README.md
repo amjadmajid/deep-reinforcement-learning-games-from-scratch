@@ -1,39 +1,41 @@
-# Asnychronous Advantage Actor-Critic (A2C) Algorithm
+Certainly! Here's the previous answer presented using LaTeX syntax with inline equations enclosed in `$...$` and display equations enclosed in `$$...$$`:
 
 **Overview of A2C:**
+
 The A2C algorithm combines the actor-critic framework with the advantage function approach to improve reinforcement learning. It consists of two main components: the actor, which learns a policy, and the critic, which estimates the value function.
 
 The actor determines the action to take in a given state, while the critic evaluates the value of a state or state-action pair. By incorporating an advantage function, A2C aims to reduce variance and improve learning efficiency.
 
 **Mathematical Equations:**
 
-1. **Policy:** The policy \(\pi(a|s;\theta)\) is a parameterized probability distribution that defines the agent's action selection behavior given a state \(s\). It is parameterized by \(\theta\), which represents the weights of the policy network.
+1. **Policy:** The policy $\pi(a|s;\theta)$ is a parameterized probability distribution that defines the agent's action selection behavior given a state $s$. It is parameterized by $\theta$, which represents the weights of the policy network.
 
-2. **Value Function:** The value function \(V(s;\phi)\) estimates the expected return (or cumulative reward) starting from state \(s\) and following the policy \(\pi\) parameterized by \(\theta\). It is parameterized by \(\phi\), which represents the weights of the value network.
+2. **Value Function:** The value function $V(s;\phi)$ estimates the expected return (or cumulative reward) starting from state $s$ and following the policy $\pi$ parameterized by $\theta$. It is parameterized by $\phi$, which represents the weights of the value network.
 
-3. **Advantage Function:** The advantage function \(A(s,a;\theta,\phi)\) quantifies the advantage of taking action \(a\) in state \(s\) over the average expected return when following the policy \(\pi\) parameterized by \(\theta\). It is calculated as the difference between the estimated value and the state-action pair's value:
+3. **Advantage Function:** The advantage function $A(s,a;\theta,\phi)$ quantifies the advantage of taking action $a$ in state $s$ over the average expected return when following the policy $\pi$ parameterized by $\theta$. It is calculated as the difference between the estimated value and the state-action pair's value:
 
-   \[A(s,a;\theta,\phi) = Q(s,a;\theta,\phi) - V(s;\phi)\]
+$$A(s,a;\theta,\phi) = Q(s,a;\theta,\phi) - V(s;\phi)$$
 
-   where \(Q(s,a;\theta,\phi)\) is the estimated state-action value.
+where $Q(s,a;\theta,\phi)$ is the estimated state-action value.
 
 **A2C Algorithm Steps:**
 
-1. Initialize the actor network with random weights \(\theta\) and the critic network with random weights \(\phi\).
+1. Initialize the actor network with random weights $\theta$ and the critic network with random weights $\phi$.
 2. Repeat until convergence or a maximum number of steps:
-   - Observe the current state \(s\) from the environment.
-   - Compute the action probabilities given the current state: \(\pi(a|s;\theta)\).
-   - Sample an action \(a\) from the action probabilities.
-   - Execute the action in the environment and receive the next state \(s'\), reward \(r\), and done flag indicating the end of the episode.
-   - Calculate the advantage \(A(s,a;\theta,\phi)\) using the current state-action pair.
+   - Observe the current state $s$ from the environment.
+   - Compute the action probabilities given the current state: $\pi(a|s;\theta)$.
+   - Sample an action $a$ from the action probabilities.
+   - Execute the action in the environment and receive the next state $s'$, reward $r$, and done flag indicating the end of the episode.
+   - Calculate the advantage $A(s,a;\theta,\phi)$ using the current state-action pair.
    - Update the value network by minimizing the mean squared error loss:
 
-     \[L_{\text{critic}} = \frac{1}{2}(V(s;\phi) - (r + \gamma V(s';\phi))^2\]
+   $$L_{\text{critic}} = \frac{1}{2}(V(s;\phi) - (r + \gamma V(s';\phi)))^2$$
 
-     where \(\gamma\) is the discount factor.
+   where $\gamma$ is the discount factor.
+
    - Update the actor network by maximizing the expected reward using the advantage estimate:
 
-     \[L_{\text{actor}} = -\log(\pi(a|s;\theta)) \cdot A(s,a;\theta,\phi)\]
+   $$L_{\text{actor}} = -\log(\pi(a|s;\theta)) \cdot A(s,a;\theta,\phi)$$
 
    - Compute the gradients and perform the weight updates using stochastic gradient descent or another optimization algorithm.
    - Repeat the above steps for a predefined number of episodes or until convergence.
